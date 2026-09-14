@@ -1,0 +1,7 @@
+servers:
+  - name: deepwiki
+    description: DeepWiki 公共 MCP，查询 GitHub 开源仓库文档（teamai demo）
+    transport: http
+    url: https://mcp.deepwiki.com/mcp
+    headers:
+      X-Teamai-Demo: ${TEAMAI_DEMO_ENV}
