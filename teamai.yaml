@@ -1,13 +1,42 @@
-team: my-team
-description: TeamAI shared resources
+team: teamcli
+description: teamai 完整示例团队仓库（skills、rules、共享指令、learnings、docs、agents、MCP、hooks、env、packages）
 repo: https://github.com/lunarianss/TeamCli.git
 provider: github
+
+# push 开 PR 时自动请求这些人评审
+reviewers:
+  - lunarianss
+
+# 允许其他团队用 `teamai source add` 订阅的 skill
+publicSkills:
+  - lavish
+  - show-me
+
+# 团队统一的 npm 包和 Claude 插件；pull 只提示，成员执行 `teamai packages` 才安装
+packages:
+  npm:
+    - name: lavish-axi
+      version: latest
+      global: true
+
 sharing:
   rules:
-    enforced: []
+    # 成员本地删不掉的规则
+    enforced:
+      - commit-message
   docs:
-    localDir: ./.teamai/docs
+    # project scope 下 `~/` 会被替换成业务仓库根目录
+    localDir: ~/.claude/team-docs
   env:
     injectShellProfile: true
+  hooks:
+    autoApply: true
+    requireTeamScripts: false
+  mcp:
+    autoApply: true
+    allowedHosts:
+      - mcp.deepwiki.com
   recall:
+    enabled: true
+  contributeHint:
     enabled: true

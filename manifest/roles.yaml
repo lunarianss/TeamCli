@@ -1,0 +1,14 @@
+# 角色：和项目正交，成员用 `teamai roles set <id>` 选择自己的职能
+# 最终同步的命名空间 = 角色的命名空间 ∪ 当前目录激活项目的命名空间
+version: 1
+roles:
+  - id: backend
+    description: 后端（Go）
+    resources:
+      skills: [backend]
+      knowledge: [backend]
+  - id: frontend
+    description: 前端（React / TypeScript）
+    resources:
+      skills: [frontend]
+      knowledge: [frontend]

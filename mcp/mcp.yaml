@@ -1,7 +1,9 @@
 servers:
   - name: deepwiki
-    description: DeepWiki 公共 MCP，查询 GitHub 开源仓库文档（teamai demo）
+    description: DeepWiki：查询 GitHub 开源仓库的文档和实现细节
     transport: http
     url: https://mcp.deepwiki.com/mcp
     headers:
-      X-Teamai-Demo: ${TEAMAI_DEMO_ENV}
+      # ${VAR} 先取成员自己的环境变量，再取 env/env.yaml；解析后以明文写入 .mcp.json
+      X-Client-Tag: ${TEAM_MCP_CLIENT_TAG}
+    tools: [claude, cursor]

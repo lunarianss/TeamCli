@@ -3,7 +3,7 @@ title: axonhub 的 llm 模块测试要在子目录里跑
 tags: [axonhub, go, testing]
 ---
 
-# axonhub 的 llm 模块测试要在子目录里跑（teamai demo · axonhub 私有 learning）
+# axonhub 的 llm 模块测试要在子目录里跑
 
 现象：在仓库根目录执行 `go test ./llm/...` 报 module 边界错误，看起来像代码坏了。
 

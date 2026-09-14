@@ -1,0 +1,6 @@
+# 标签：成员 `teamai tags subscribe <tag>` 后，额外同步带这些标签的 skill
+# 没有订阅任何标签时全部照常同步；不要给强制规则打标签，否则订阅了别的标签的成员会被过滤掉
+skills:
+  lavish: [visual, review]
+  show-me: [visual]
+  pr-description: [git]
