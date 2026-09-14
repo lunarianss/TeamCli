@@ -2,7 +2,7 @@
 
 这个仓库用 [teamai-cli](https://github.com/Tencent/teamai-cli) 把团队的 AI 工作方式分发到每个人的 Claude Code、Codex、Cursor、Grok。里面放齐了 teamai 支持的所有资源类型，每类都有能直接用的示例。
 
-> 以下行为基于 teamai-cli 0.23.1 实测，文末列出了已知的坑。
+> 以下行为在 teamai-cli 0.23.1 上实测；teamai 会自动升级，本仓库验证期间已升到 0.24.0，有差异的地方在「已知的坑」里单独标注。
 
 ## 目录结构
 
@@ -102,9 +102,9 @@ teamai tags subscribe visual    # 可选：订阅标签
 | 踩坑经验 | 会话里运行 `/teamai-share-learnings`，或 `teamai contribute --file <文件>`（直接推 main） |
 | packages | `teamai packages install <包> --npm --global`，再 `teamai push --all` |
 
-## 已知的坑（teamai-cli 0.23.1）
+## 已知的坑
 
-1. **会改写已提交的 `AGENTS.md`**：注入共享指令时不看 `--agent` 白名单，hermes 的注入路径就是 `AGENTS.md`。接入后在项目分区的 `~/.teamai/projects/<分区>/config.yaml` 里写：
+1. **会改写已提交的 `AGENTS.md`（0.23.1 实测；0.24.0 源码已改为检查白名单，未实测）**：注入共享指令时不看 `--agent` 白名单，hermes 的注入路径就是 `AGENTS.md`。稳妥起见，接入后在项目分区的 `~/.teamai/projects/<分区>/config.yaml` 里写：
    ```yaml
    disabledAgents:
      - hermes
@@ -112,9 +112,11 @@ teamai tags subscribe visual    # 可选：订阅标签
    ```
 2. **Codex 读不到 rules 和共享指令**：只有 skills 对 Codex 生效。需要 Codex 遵守的规则，写进业务仓库自己的 `AGENTS.md`。
 3. **激活项目后，`skills/` 根目录下的 skill 会被清理**：共用的 skill 放进 `skills/common/`。
-4. **没有 `teamai projects` 子命令**：用 `init --project <id> --force`；如果本地已有团队仓库克隆，先 `teamai pull` 再 init。
+4. **切换项目**：0.24.0 起可以用 `teamai projects set <id>`；0.23.1 没有这个命令，只能 `init --project <id> --force`，而且本地已有团队仓库克隆时要先 `teamai pull` 再 init。
 5. **env 是全局的**：`~/.zshrc` 里只有一段，指向最后一次 pull 的项目。
 6. **MCP 的 `${VAR}` 会解析成明文**：业务仓库要把 `.mcp.json` 加进 gitignore。变量没设置的 server 会被直接跳过，没有提示。
 7. **hooks 写在用户主目录**：每个关联过的项目都有一份副本；需要只对某个项目生效的，在命令里判断 `$PWD`。
 8. **contribute 和用量统计会直接推到 main**：团队仓库克隆里如果没设邮箱，会用全局的 git 邮箱。可以执行 `git -C ~/.teamai/projects/<分区>/team-repo config user.email <noreply 邮箱>`。
 9. **recall 检索会跨项目**：learnings 是隔离的，但检索结果里会出现其他项目的 skill。
+10. **teamai 会自动升级并迁移本地分区**：验证期间 0.23.1 自动升到了 0.24.0（装在 `~/.local`），分区目录名从 `<仓库>-<hash>` 改成了 `users-…-<仓库>-<hash>`，原有配置保留。
+11. **团队自定义的 agents 只分发给 Claude**：Codex、Cursor 只收到内置的 teamai-recall。
