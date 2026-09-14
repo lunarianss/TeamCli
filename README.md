@@ -61,7 +61,7 @@ TeamCli/
 | culture.md | 注入 `.claude/CLAUDE.md` | ❌ | 启动时全文加载 |
 | learnings | 团队仓库里建检索索引 | ✅ 子目录 | 规则提醒模型先检索，由 `teamai-recall` 子 agent 执行 `teamai recall` |
 | docs | `<项目>/.claude/team-docs/`，并建检索索引 | ❌ | 按需检索 |
-| agents | `.claude/agents` `.codex/agents`（转成 `.toml`）`.cursor/agents` | ❌ | 主模型把任务委派给子 agent |
+| agents | 团队自定义的只到 `.claude/agents`；内置 teamai-recall 另外会到 `.codex/agents`（`.toml`）和 `.cursor/agents` | ❌ | 主模型把任务委派给子 agent |
 | MCP | `<项目>/.mcp.json` `.cursor/mcp.json` | ❌（写在项目里，但每个项目都会写） | 变成模型可调用的工具 |
 | hooks | 用户主目录下各工具的 settings，按项目根目录自动加判断 | ❌（要分项目，在命令里自己判断 `$PWD`） | 工具在事件发生时执行；可以往上下文加文字，或用退出码 2 拦截 |
 | env | 项目分区的 `env.sh`，并在 `~/.zshrc` 里 source | ❌ | 模型执行的命令和 MCP 能读到这些变量 |
