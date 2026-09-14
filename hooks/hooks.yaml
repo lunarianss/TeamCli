@@ -1,8 +1,17 @@
 hooks:
-  - id: demo-session-log
-    description: 会话开始时记一行本机日志，只在三个试用项目里生效（teamai demo）
+  - id: block-force-push
+    description: 拦截 AI 执行 git push --force（团队规定）
+    event: PreToolUse
+    matcher: Bash
+    command: >-
+      bash -c 'jq -r ".tool_input.command // empty" | grep -qE "git push.*(--force|-f( |$))" && { echo "团队规定：禁止 git push --force，请先和团队确认" >&2; exit 2; }; exit 0'
+    timeout: 5
+    tools: [claude]
+
+  - id: grok-bot-node-reminder
+    description: 在 grok-bot 里开会话时提醒 Node 版本（命令里按路径判断，只对 grok-bot 生效）
     event: SessionStart
     command: >-
-      bash -c 'case "$PWD" in */axonhub|*/grok-bot-0.18-reconstructed|*/cyrax-cli) echo "$(date +%FT%T) $PWD" >> "$HOME/.teamai/demo-team-hook.log";; esac' || true
+      bash -c 'case "$PWD" in */grok-bot-0.18-reconstructed) echo "提醒：grok-bot 需要 Node 26.5.0 到 27，当前 $(node -v 2>/dev/null || echo 未安装)";; esac; exit 0'
     timeout: 5
-    tools: [claude, codex, cursor]
+    tools: [claude]

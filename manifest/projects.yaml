@@ -1,3 +1,5 @@
+# 逻辑项目：业务仓库用 `teamai init … --project <id>` 激活
+# 激活后只同步 skills/<命名空间>/ 里被选中的 skill；所有项目共用的放 common
 version: 1
 projects:
   - id: axonhub
