@@ -1,0 +1,8 @@
+hooks:
+  - id: demo-session-log
+    description: 会话开始时记一行本机日志，只在三个试用项目里生效（teamai demo）
+    event: SessionStart
+    command: >-
+      bash -c 'case "$PWD" in */axonhub|*/grok-bot-0.18-reconstructed|*/cyrax-cli) echo "$(date +%FT%T) $PWD" >> "$HOME/.teamai/demo-team-hook.log";; esac' || true
+    timeout: 5
+    tools: [claude, codex, cursor]
