@@ -1,0 +1,16 @@
+version: 1
+projects:
+  - id: axonhub
+    name: AxonHub
+    description: looplj/axonhub AI 网关
+    resources:
+      skills: [axonhub]
+      knowledge: [axonhub]
+      learnings: [axonhub]
+  - id: grok-bot
+    name: Grok Bot 0.18 Reconstructed
+    description: lunarianss/grok-bot-0.18-reconstructed
+    resources:
+      skills: [grok-bot]
+      knowledge: [grok-bot]
+      learnings: [grok-bot]
