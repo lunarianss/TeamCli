@@ -1,6 +1,9 @@
 username: lunarianss
-updatedAt: 2026-09-14T09:47:28.721Z
-skills: {}
+updatedAt: 2026-09-14T10:14:15.300Z
+skills:
+  artifact-design:
+    count: 1
+    lastUsed: 2026-09-14T09:53:50.048Z
 interventions:
   sessions: 14
   interrupt: 0
