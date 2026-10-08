@@ -1,0 +1,23 @@
+version: 2
+votes:
+  grok-bot/grok-bot-bootstrap-lfs:
+    recalled_count: 2
+    upvoted_count: 0
+    last_recalled_at: 2026-10-08T03:57:10.288Z
+  grok-bot-build:
+    recalled_count: 2
+    upvoted_count: 0
+    last_recalled_at: 2026-10-08T03:57:10.288Z
+  grok-bot/node-version:
+    recalled_count: 2
+    upvoted_count: 0
+    last_recalled_at: 2026-10-08T03:57:10.288Z
+  review-checklist:
+    recalled_count: 1
+    upvoted_count: 0
+    last_recalled_at: 2026-10-08T03:57:10.288Z
+  contributing-to-teamcli:
+    recalled_count: 1
+    upvoted_count: 0
+    last_recalled_at: 2026-10-08T03:57:10.288Z
+deltas: {}
